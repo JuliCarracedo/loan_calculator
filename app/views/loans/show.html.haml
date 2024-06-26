@@ -1,0 +1,35 @@
+.flex.flex-col.items-center.justify-center.bg-gray-900.p-6.rounded-xl{ class: 'w-1/2' }
+  .font-bold.text-2xl.uppercase= 'This is your loan'
+  .mt-24.w-full.flex.items-center.justify-between
+    .border-purple-700.border-r.flex.flex-col.items-center.p-4{ class: 'w-1/2'}
+      .w-full.flex.items-center.justify-between
+        .font-bold= 'Name:'
+        = @loan.name
+      .w-full.flex.items-center.justify-between
+        .font-bold= 'Email:'
+        = @loan.email
+      .w-full.flex.items-center.justify-between
+        .font-bold= 'Phone:'
+        = @loan.phone
+      .w-full.flex.items-center.justify-between
+        .font-bold= 'Address:'
+        = @loan.address
+      .w-full.flex.items-center.justify-between
+        .font-bold= 'Loan term:'
+        = @loan.loan_term
+      .w-full.flex.items-center.justify-between
+        .font-bold= 'Purchase Price:'
+        = number_to_currency(@loan.purchase_price)
+      .w-full.flex.items-center.justify-between
+        .font-bold= 'Repair Price:'
+        = number_to_currency(@loan.repair_price)
+      .w-full.flex.items-center.justify-between
+        .font-bold= 'ARV:'
+        = number_to_currency(@loan.arv)
+    .flex.flex-col.items-center.p-4{ class: 'w-1/2' }
+      .text-2xl= 'The maximum loan is:'
+      .text-3xl= @loan.loan
+      .mt-12.text-xl= 'With a total profit of:'
+      .text-xl= @loan.profit
+      = '13% yearly interest'
+  .font-bold.text-2xl.mt-12.hover:underline.font-bold= link_to 'New Loan', new_loan_path
