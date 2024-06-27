@@ -1,1 +1,14 @@
 /* Application styles */
+.bg-custom-green{
+  background-color: rgb(89, 103, 45);
+  transition: 0.1s;
+}
+
+.bg-custom-green:hover{
+  background-color: rgb(114, 131, 57);
+}
+
+.loadbar{
+  transition: 0.3s ease-out;
+  background-color: rgb(89, 103, 45);
+}

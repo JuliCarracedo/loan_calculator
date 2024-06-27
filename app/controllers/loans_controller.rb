@@ -26,6 +26,6 @@ class LoansController < ApplicationController
   private
 
   def loan_params
-    params.permit(:address, :loan_term, :purchase_price, :repair_price, :arv, :name, :email, :phone)
+    params.require(:loan).permit(:address, :loan_term, :purchase_price, :repair_price, :arv, :name, :email, :phone)
   end
 end
