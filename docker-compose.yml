@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && rails server -b '0.0.0.0' -p 3009"
+    volumes:
+      - .:/app
+    ports:
+      - "3009:3009"
+    depends_on:
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379/1
+    networks:
+      - app_network
+
+  redis:
+    image: redis:6.2
+    networks:
+      - app_network
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+    environment:
+      REDIS_URL: redis://redis:6379/1
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
