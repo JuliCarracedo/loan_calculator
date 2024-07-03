@@ -13,7 +13,7 @@ class LoansController < ApplicationController
     @loan = Loan.new(all_loan_params)
 
     if @loan.save
-      DeliverLoanMailJob.perform_async(@loan.id)
+      LoanMailer.with(loan: @loan).your_loan.deliver_later
       redirect_to loan_path(@loan)
     else
       render :new
